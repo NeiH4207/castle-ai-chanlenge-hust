@@ -4,7 +4,7 @@ import pygame
 import os 
 
 RED = (255, 0, 0)
-BG_COLOR = (231, 225, 232)
+BG_COLOR = (245, 245, 245)
 LINE_COLOR = (0, 0, 0)
 CIRCLE_COLOR = (239, 231, 200)
 CROSS_COLOR = (66, 66, 66)
@@ -151,7 +151,7 @@ class Screen():
         self.screen.blit(STurns, self.coord(0, self.width + 2))
     
     def show_value(self, value, x, y):
-        myFont = pygame.font.SysFont("Helvetica", 30)
+        myFont = pygame.font.SysFont("Times New Roman", 30)
         value = round(value)
         pos = 5
         if value >= 0 and value < 10:
@@ -160,13 +160,6 @@ class Screen():
             pos = 10
         value = myFont.render(str(value), 1, (0, 0, 0))
         self.screen.blit(value, (x * self.SQUARE_SIZE + pos, y * self.SQUARE_SIZE + 8))
-        
-    def show_treasure_value(self, value, x, y):
-        self.draw_treasure(x, y)
-        value = round(value)
-        myFont = pygame.font.SysFont("Times New Roman", 13)
-        value = myFont.render(str(value), 1, (255, 0, 0))
-        self.screen.blit(value, (x * self.SQUARE_SIZE + 2, y * self.SQUARE_SIZE + int(self.SQUARE_SIZE * 5 / 7)))
         
     def draw_wall(self, player_id, x, y):
         if player_id == 0:
@@ -206,8 +199,8 @@ class Screen():
         
     def draw_squares(self, coord, player_ID):
         x, y = coord
-        self._draw_squares(2 + x * self.SQUARE_SIZE, 2 + y * self.SQUARE_SIZE,
-                           (self.SQUARE_SIZE - 3), (self.SQUARE_SIZE - 3), player_ID)
+        self._draw_squares(1 + x * self.SQUARE_SIZE, 1 + y * self.SQUARE_SIZE,
+                           (self.SQUARE_SIZE - 1), (self.SQUARE_SIZE - 1), player_ID)
         
     def _redraw_squares(self, x1, y1, x2, y2, player_ID):
         color = self.color_A if player_ID == 0 else self.color_B
@@ -215,8 +208,8 @@ class Screen():
         
         
     def redraw_squares(self, x, y, player_ID):
-        self._redraw_squares(2 + x * self.SQUARE_SIZE, 2 + y * self.SQUARE_SIZE,
-                           (self.SQUARE_SIZE - 3), (self.SQUARE_SIZE - 3), player_ID)
+        self._redraw_squares(1 + x * self.SQUARE_SIZE, 1 + y * self.SQUARE_SIZE,
+                           (self.SQUARE_SIZE - 1), (self.SQUARE_SIZE - 1), player_ID)
         self.show_value(self.state.title_board[x][y], x, y)
            
     def _make_empty_squares(self, x1, y1, x2, y2):
@@ -225,6 +218,6 @@ class Screen():
         
     def make_empty_square(self, coord):
         x, y = coord
-        self._make_empty_squares(2 + x * self.SQUARE_SIZE, 2 + y * self.SQUARE_SIZE,
-                           (self.SQUARE_SIZE - 2), (self.SQUARE_SIZE - 2))
+        self._make_empty_squares(1 + x * self.SQUARE_SIZE, 1 + y * self.SQUARE_SIZE,
+                           (self.SQUARE_SIZE - 1), (self.SQUARE_SIZE - 1))
         

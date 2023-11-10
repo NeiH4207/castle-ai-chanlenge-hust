@@ -5,6 +5,7 @@ Created on Tue Apr 27 2:19:47 2023
 from __future__ import division
 import json
 import logging
+import time
 from algorithms.RandomStep import RandomStep
 from src.environment import AgentFighting
 from src.utils import set_seed
@@ -55,6 +56,7 @@ def main():
         next_state, reward, done = env.step(action, verbose=True)
         state = next_state
         env.render()
+        time.sleep(0.05)
     
     winner = env.get_winner()
     if winner == -1:
