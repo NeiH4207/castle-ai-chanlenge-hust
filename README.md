@@ -22,3 +22,6 @@ Example command for testing game with 10 episodes:
 ```python
 python3 test_game.py --render
 ```
+
+
+![sample](board/images/sample.png)

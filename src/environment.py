@@ -65,7 +65,7 @@ class AgentFighting(object):
     def get_space_size(self):
         return self.get_state()['observation'].shape
             
-    def get_state(self, partial=False, return_object=False):
+    def get_state(self, partial=True, return_object=False):
         if return_object:
             return dcopy(self.state)
         else:
