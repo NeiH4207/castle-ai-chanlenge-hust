@@ -10,6 +10,6 @@
         "max-num-turns": 100,
         "num-castles": 15,
         "num-ponds": 15,
-        "obs_range": 10
+        "obs_range": 6
     }
 }

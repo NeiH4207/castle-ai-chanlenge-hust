@@ -145,7 +145,6 @@ class State(Map):
         wall_board = self.walls[players]
         territory_board = self.territories[players]
         agent_current_board = np.zeros(agent_board[0].shape)
-        # Removed debugging statement
         obs = np.stack(
             (
                 agent_board[0], 

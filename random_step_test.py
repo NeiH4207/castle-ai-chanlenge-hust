@@ -7,6 +7,7 @@ import json
 import logging
 import time
 from algorithms.RandomStep import RandomStep
+from algorithms.StupidMove import StupidMove
 from src.environment import AgentFighting
 from src.utils import set_seed
 log = logging.getLogger(__name__)
@@ -14,7 +15,7 @@ from argparse import ArgumentParser
 
 def argument_parser():
     parser = ArgumentParser()
-    parser.add_argument('--render', action='store_true',
+    parser.add_argument('--render', action='store_true', default=True,
                         help='Whether to render the game')
     return parser.parse_args()
 
@@ -22,11 +23,13 @@ def main():
     args = argument_parser()
     configs = json.load(open('configs/map.json'))
     env = AgentFighting(args, configs, args.render)
+    set_seed(0)
     observation_shape = env.get_space_size()
     n_actions = env.n_actions
     logging.info('Observation shape: {}'.format(observation_shape))
     logging.info('Number of actions: {}'.format(n_actions))
-    algorithm = RandomStep(n_actions=env.n_actions, num_agents=env.num_agents)
+    player_brain_1 = RandomStep(n_actions=env.n_actions, num_agents=env.num_agents)
+    player_brain_2 = StupidMove(n_actions=env.n_actions, num_agents=env.num_agents)
     """
     partial = True (default) if you want to get the partial state,
     the environment will return the a matrix of size (obs_range x 2 + 1) x (obs_range x 2 + 1) 
@@ -51,7 +54,10 @@ def main():
     state = env.get_state()
     
     while not env.is_terminal():
-        action = algorithm.get_action(state)
+        if state['player-id'] == 0:
+            action = player_brain_1.get_action(state)
+        else:
+            action = player_brain_2.get_action(state)
         log.info('PlayerID: {}, AgentID: {}, Action: {}'.format(state['player-id'], state['current-agent-id'], action))
         next_state, reward, done = env.step(action, verbose=True)
         state = next_state
