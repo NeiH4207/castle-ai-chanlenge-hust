@@ -1,4 +1,4 @@
-#  ✨ Castle Game AI ✨  
+#  ✨ Castle AI ✨  
 
 Documents link: https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2023/04/De-PROCON_2023.pdf
 
@@ -7,7 +7,7 @@ Documents link: https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2023/04/De-PRO
 pip install -e .
 ```
 `Note:` Using virtual environment (conda) is recommended to ensure the packages are installed in the right environment.
-## Run script with your machine using random steps for testing
+## Run script using random steps for testing
 
 ``` bash
 usage: random_step_test.py [-h] [--render]
